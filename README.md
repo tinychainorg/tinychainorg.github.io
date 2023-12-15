@@ -17,26 +17,9 @@ In under 1000 LOC:
 
 Let the devs do what they do best - building cool stuff.
 
-## Brainfuck-based blockchain
+## Built on Tinychain
 
-The first network to be deployed using tinychain will be **Brainnet**, a Brainfuck-based blockchain.
-
-**Quotes**
-
-"This is plausible the most perverted blockchain project in history." - Vinay Gupta, co-ran the Ethereum launch
-
-"cannot wait to write a constant product AMM in Brainfuck" - Sam, Robot Labs.
-
-![fe5f2450-7b82-49d0-8a66-414f96adcc35](https://github.com/tinychainorg/tinychainorg.github.io/assets/584141/2f8d97f9-6883-49c4-9982-06ec5d7c215a)
-
-| **Area**     | **Description**                                                                                                                                                                                                                                                                                            | **Status**  |
-|--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
-| VM           | [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) smart contracts                                                                                                                                                                                                                                       | ✅⚠️ 60% Done |
-| Consensus    | Bitcoin / Nakamoto / POW with ZK-friendly hash function                                                                                                                                                                                                                                                    | ⚠️ WIP       |
-| Tokenomics   | Ethereum-like - native token + fixed exchange rate to gas                                                                                                                                                                                                                                                  | ✅ Done      |
-| Cryptography | ECDSA wallets, SECP256k1 curve (same as BTC), SHA-2 256 bit hash function                                                                                                                                                                                                                                  | ✅ Done      |
-| Networking   | P2P and RPC servers both use HTTP, gossip network architecture                                                                                                                                                                                                                                             | ✅ Done       |
-| ZK proofs    | ZK for compression of tinychain. Use either [groth16](https://github.com/erhant/zkbrainfuck) or [halo2](https://github.com/cryptape/ckb-bf-zkvm) SNARK proofs for brainfuck. TBA we will rework consensus/crypto to use SNARK-friendly tech (MiMC/Poseidon hash function, SNARK-friendly signature scheme) |             |
+**Brainnet**. A blockchain that runs Brainfuck. [https://tinychainorg.github.io/brainnet/](https://tinychainorg.github.io/brainnet/)
 
 
 ## What else can I do with Tinychain?
@@ -54,6 +37,7 @@ The first network to be deployed using tinychain will be **Brainnet**, a Brainfu
    * Free transactions for hodlers of NFT's
    * Points
  * Experiment with new **VM designs**:
+   * A network that only verifies ZK proofs.
    * Brainfuck
    * RISC V
    * GPU / [MLIR](https://mlir.llvm.org/)
