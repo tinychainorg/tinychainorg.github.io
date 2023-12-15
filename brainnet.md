@@ -12,11 +12,9 @@ The entire thing is proven using [Halo 2 SNARK's](https://github.com/cryptape/ck
 
 ![fe5f2450-7b82-49d0-8a66-414f96adcc35](https://github.com/tinychainorg/tinychainorg.github.io/assets/584141/2f8d97f9-6883-49c4-9982-06ec5d7c215a)
 
-## Get ready 
+## if you want to violate the howey test, visit this link
 
-we need devs and people willing to run the brainfuck nodes
-
-https://t.me/+t_OqbV1y2Nw1YjFl
+[https://t.me/+t_OqbV1y2Nw1YjFl](https://t.me/+t_OqbV1y2Nw1YjFl)
 
 ## Status
 
