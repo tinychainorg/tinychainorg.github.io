@@ -1,6 +1,3 @@
----
-title: Welcome to tinychain
----
 # Welcome to tinychain
 
 Want to experiment with new blockchain designs? Sick and tired of the 2000 page War And Peace -style docs to get setup with OP Stack? 
