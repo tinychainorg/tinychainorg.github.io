@@ -1,6 +1,3 @@
----
-title: blockchain that runs brainfuck
----
 # get ready for Brainnet
 
 A blockchain that runs Brainfuck smart contracts.
