@@ -77,18 +77,21 @@
 
 
 <script>
-// window.document.addEventListener("DOMContentLoaded", function() {
-//   // Gate with password.
-//   var password = prompt("Password?");
-//   if (password == "build") {
-//     // show <main>
-//     tinymain.style = "";
-//   } else {
-//     // clear main and show message.
-//     tinymain.innerHTML = "Password incorrect.";
-//     tinymain.style = "";
-//   }
-// })
+window.document.addEventListener("DOMContentLoaded", function() {
+  tinymain.style = "";
+  return;
+
+  // Gate with password.
+  var password = prompt("Password?");
+  if (password == "build") {
+    // show <main>
+    tinymain.style = "";
+  } else {
+    // clear main and show message.
+    tinymain.innerHTML = "Password incorrect.";
+    tinymain.style = "";
+  }
+})
 </script>
 </head>
 
