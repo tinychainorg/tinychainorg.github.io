@@ -77,12 +77,18 @@
 
 
 <script>
-  // Gate with password.
-  var password = prompt("Password?");
-  if (password == "iamabuildor") {
-    // show <main>
-    document.querySelector("main").style.display = "block";
-  }
+// window.document.addEventListener("DOMContentLoaded", function() {
+//   // Gate with password.
+//   var password = prompt("Password?");
+//   if (password == "build") {
+//     // show <main>
+//     tinymain.style = "";
+//   } else {
+//     // clear main and show message.
+//     tinymain.innerHTML = "Password incorrect.";
+//     tinymain.style = "";
+//   }
+// })
 </script>
 </head>
 
@@ -92,7 +98,7 @@
 <body>
 
 
-  <main style="display: none;">
+  <main id="tinymain" style="display: none;">
 
   <h1 class="title">tinychain</h1>
 
@@ -149,6 +155,8 @@
       blockchains. Proof-of-stake, although effective, is still not as simple and robust as proof-of-work.
       Using just two nodes and an internet connection, POW can run a full financial system that will outlast the
       bureaucratic machinery of any one nation state fiat.</p>
+    <!-- <h2>Why a new network?</h2>
+    <p>Using everything we have learnt about blockchains in 15 years, is it possible to design something better? We believe the answer is yes.</p> -->
 
     <br />
 
@@ -162,7 +170,7 @@
         validity.</li>
     </ul>
     </p>
-    <p>In doing so, we make it possible to efficiently prove the validity of blocks, and thus the history of bitcoin's
+    <p>In doing so, we make it possible to efficiently prove the validity of blocks, and thus the history of nakamoto
       state, <strong><i>in realtime</i></strong>.</p>
     <p>
     <ul>
@@ -173,10 +181,13 @@
         curve, and Poseidon hash function, we can create proofs of size 32B (3 field elements of 8 bytes each).</li>
     </ul>
     </p>
+    <p>With this design, we can ensure that the entire history of the chain is compressed into a series of proofs, which
+      can be verified in realtime by any node in the network.</p>
+    <p>Consequently, it becomes possible to securely bridge $TNY to other blockchain networks such as Ethereum because of ZK proofs. We believe enshrining the ZK proofing as part of Tinychain, rather than relying on external dependencies such as <a href="https://docs.gevulot.com/gevulot-docs/network/overview">prover networks</a>, is the right decision for the long-term sovereignity of the chain.</p>
 
     <br />
     <h1>Distribution.</h1>
-    <p>Tinychain is designed to fulfill Satoshi's original vision for Bitcoin as global P2P hard money. As such, 99% of
+    <p>Tinychain is designed to fulfill Satoshi's original vision for Bitcoin as global P2P <a href="https://polynya.mirror.xyz/Gbd0BKCDM9mG9wqZg9Hd1wLwwS3sbfUi31ZK786YQRU">alt-sovereign hard money</a>. As such, 99% of
       the Tinychain supply will be distributed permissionlessly through mining.</p>
     <p>The Tinychain token, $TNY, will be distributed fairly to every person with a computer in the entire world, as
       Satoshi desired.</p>
@@ -190,7 +201,7 @@
     <h1>Our fundraise.</h1>
     <p>We are hosting an uncapped IDO raise of $5M for 1% of the $TNY supply (and only that). Buyers will have their
       tokens generated at launch with 4YR linear unlock (matching the release of the first 1% of block rewards). We are looking for investors who believe in the vision of a world where everyone has a
-      bank account, and are willing to support us in building it.</p>
+      crypto bank account, and are willing to support us in building it.</p>
 
     <br />
 
