@@ -170,6 +170,7 @@ window.document.addEventListener("DOMContentLoaded", function() {
     <ul>
       <li><b>Hashcash</b>: SHA256 -> <a href="https://eprint.iacr.org/2019/458.pdf">Poseidon</a>.</li>
       <li><b>Signatures</b>: ECDSA signatures -> ZK signatures which show knowledge of a hash's preimage.</li>
+      <li><b>Scripts/VM</b>: Script -> commitments to provable spending conditions which allow Turing-complete computation with fixed-size verification cost (1 groth16 proof).</li>
       <li><b>Blockchain history</b>: blocks processed into state -> succinct state snapshots with ZK-SNARK proofs of
         validity.</li>
     </ul>
@@ -182,7 +183,8 @@ window.document.addEventListener("DOMContentLoaded", function() {
       <li>Each proof shows the validity of the POW solution, the signatures of all transactions, and the new accounts
         state. Proofs verify the proof of the previous block using recursive verification.</li>
       <li>Using the <a href="https://blog.lambdaclass.com/groth16/">groth16</a> ZK-SNARK proving scheme, with the BN256
-        curve, and Poseidon hash function, we can create proofs of size 32B (3 field elements of 8 bytes each).</li>
+        curve, and Poseidon hash function, we can create proofs of size 32B (3 field elements of 8 bytes each) and verify them in 1.2ms <a href="https://eprint.iacr.org/2019/458.pdf">[1]</a>.</li>
+      <li>By building atop proof aggregation <a href="https://eprint.iacr.org/2021/529.pdf">[2]</a> and recursive verification schemes, it is possible to rollup these proofs into a single proof.</li>
     </ul>
     </p>
     <p>With this design, we can ensure that the entire history of the chain is compressed into a series of proofs, which
