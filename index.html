@@ -73,26 +73,31 @@
     code.inline {
       display: inline;
     }
+
+    img {
+      object-fit: contain;
+      width: 100%;
+    }
   </style>
 
 
-<script>
-window.document.addEventListener("DOMContentLoaded", function() {
-  tinymain.style = "";
-  return;
+  <script>
+    window.document.addEventListener("DOMContentLoaded", function () {
+      tinymain.style = "";
+      return;
 
-  // Gate with password.
-  var password = prompt("Password?");
-  if (password == "build") {
-    // show <main>
-    tinymain.style = "";
-  } else {
-    // clear main and show message.
-    tinymain.innerHTML = "Password incorrect.";
-    tinymain.style = "";
-  }
-})
-</script>
+      // Gate with password.
+      var password = prompt("Password?");
+      if (password == "build") {
+        // show <main>
+        tinymain.style = "";
+      } else {
+        // clear main and show message.
+        tinymain.innerHTML = "Password incorrect.";
+        tinymain.style = "";
+      }
+    })
+  </script>
 </head>
 
 
@@ -105,144 +110,205 @@ window.document.addEventListener("DOMContentLoaded", function() {
 
     <div class="text-align: center;">
       <center>
-      <!-- <img style="display: inline-block; object-fit: contain; height:80px" src="./logo.png"/> -->
-      <!-- <img style="display: inline-block; object-fit: contain; height:240px" src="./2for_revered_anon.png"/> -->
-      <img style="display: inline-block; object-fit: contain; height:240px; padding-bottom: 30px;" src="./for_exceptional_client.png"/>
+        <!-- <img style="display: inline-block; object-fit: contain; height:80px" src="./logo.png"/> -->
+        <!-- <img style="display: inline-block; object-fit: contain; height:240px" src="./2for_revered_anon.png"/> -->
+        <img style="display: inline-block; object-fit: contain; height:240px; padding-bottom: 30px;"
+          src="./for_exceptional_client.png" />
+        <i>Kurowassan Ōmu</i>
       </center>
     </div>
-  <!-- <h1 class="title">tinychain</h1> -->
+    <!-- <h1 class="title">tinychain</h1> -->
 
+<br/>
+    <div id="intro">
+      <p>
+        In 2009, Satoshi Nakamoto launched Bitcoin with the genesis hash "The Times 03/Jan/2009 Chancellor on brink of
+        second bailout for banks".
+      </p>
+      <p>
+        What you might not know was this was not the first genesis block. An early prerelease version of the bitcoin
+        source code, distributed on the metzdowd cryptography mailing list, contained an <b>alternative genesis block
+          mined in 2008</b>, on the date the Lehman Brothers filed for bankruptcy (credit: <a
+          href="https://serhack.me/articles/story-behind-alternative-genesis-block-bitcoin/">SerHack</a>).
+      </p>
+    </div>
 
-  <div id="intro">
-    <p>
-      In 2009, Satoshi Nakamoto launched Bitcoin with the genesis hash "The Times 03/Jan/2009 Chancellor on brink of
-      second bailout for banks".
-    </p>
-    <p>
-      What you might not know was this was not the first genesis block. An early prerelease version of the bitcoin
-      source code, distributed on the metzdowd cryptography mailing list, contained an <b>alternative genesis block
-        mined in 2008</b>, on the date the Lehman Brothers filed for bankruptcy (credit: <a
-        href="https://serhack.me/articles/story-behind-alternative-genesis-block-bitcoin/">SerHack</a>).
-    </p>
-  </div>
+    <div>
 
-  <div>
-
-    <!-- Would the real genesis please stand up. -->
-    <pre style="font-size: 12px; text-align:center;">
+      <!-- Would the real genesis please stand up. -->
+      <pre style="font-size: 12px; text-align:center;">
 <b style=""><i><a href="https://s3.amazonaws.com/nakamotoinstitute/code/bitcoin-nov08.tgz">bitcoin-nov08.tgz</a> / bitcoin.cpp:39</i></b>
 0x000006b15d1327d67e971d1de9116bd60a3a01556c91b6ebaa416ebc0cfaa646</pre>
 
-    <p>
-      tinychain is a chain building upon Satoshi's alternative genesis block. We are building a modern, cleanroom
-      implementation of a Nakamoto blockchain, that automatically compresses its history in realtime using ZK proofs,
-      and allows anyone in the world to sync the chain in only 10s.
-    </p>
+      <p>
+        tinychain is a chain building upon Satoshi's alternative genesis block. We are building a modern, cleanroom
+        implementation of a Nakamoto blockchain, that automatically compresses its history in realtime using ZK proofs,
+        and allows anyone in the world to sync the chain in only 10s.
+      </p>
 
 
 
-    <br />
-    <h1>Philosophy.</h1>
-    <p><b>Our goal:</b> to give everyone on the planet a cryptographically-sovereign bank account.</p>
-    <p><b>How?</b> By building a Nakamoto chain where syncing your node takes only 10s.</p>
-    <p>We believe this is not only possible, it is the only way forward. There are 8.1B people in the world. If each
-      person
-      had a bitcoin account denoted by <code class="inline">(pubkey [32]byte, balance uint64)</code> pair, the total
-      state
-      size would be 40 B * 8100000000 B = 324 GB.</p>
-    <p>With ZK proofs, we can ensure anyone can run a node with zero reliance on external centralizer infrastructure
-      (e.g.
-      indexers). A tinychain node downloads the latest block headers (~5MB, 1 proof) and verifies the proof which
-      demonstrates this is
-      the longest chain (~10s). Then to query balances, they download the latest balance (40 bytes) for an account from
-      a <a href="https://en.wikipedia.org/wiki/Distributed_hash_table">distributed hash table</a>, and verify it belongs
-      to the
-      current state root using a Merkle proof (32 * 32B = 1KB).</p>
-    <p>The total cost to access the network and sync your account for anyone in the world? A 56kB/s internet connection,
-      1MB
-      of storage, and a CPU that existed in the early 2000's.</p>
-    <h2>Why proof-of-work?</h2>
-    <p>A simple question is - why proof-of-work? Proof-of-work consensus is the ultimate in liveness mechanisms for
-      blockchains. Proof-of-stake, although effective, is still not as simple and robust as proof-of-work.
-      Using just two nodes and an internet connection, POW can run a full financial system that will outlast the
-      bureaucratic machinery of any one nation state fiat.</p>
-    <h2>Why not upgrade Bitcoin?</h2>
-    <p>We believe in building the most efficient chain. Bitcoin is weighed by 15 years of technical complexity (Segwit, etc.), which transfers into additional ZK proving work, thus decreasing the speed of proofing and increasing the size of proofs.</p>
-    <p>There is a real opportunity to both take what we have learnt about blockchains in 15 years, as well as economic distributions, and regenerate the old money into the new.</p>
+      <br />
+      <h1>Philosophy.</h1>
+      <p><b>Our goal:</b> to give everyone on the planet a cryptographically-sovereign bank account.</p>
+      <p><b>How?</b> By building a Nakamoto chain where syncing your node takes only 10s.</p>
+      <p>We believe this is not only possible, it is the only way forward. There are 8.1B people in the world. If each
+        person
+        had a bitcoin account denoted by <code class="inline">(pubkey [32]byte, balance uint64)</code> pair, the total
+        state
+        size would be 40 B * 8100000000 B = 324 GB.</p>
+      <p>With ZK proofs, we can ensure anyone can run a node with zero reliance on external centralizer infrastructure
+        (e.g.
+        indexers). A tinychain node downloads the latest block headers (~5MB, 1 proof) and verifies the proof which
+        demonstrates this is
+        the longest chain (~10s). Then to query balances, they download the latest balance (40 bytes) for an account
+        from
+        a <a href="https://en.wikipedia.org/wiki/Distributed_hash_table">distributed hash table</a>, and verify it
+        belongs
+        to the
+        current state root using a Merkle proof (32 * 32B = 1KB).</p>
+      <p>The total cost to access the network and sync your account for anyone in the world? A 56kB/s internet
+        connection,
+        1MB
+        of storage, and a CPU that existed in the early 2000's.</p>
+      <h2>Why proof-of-work?</h2>
+      <p>A simple question is - why proof-of-work? Proof-of-work consensus is the ultimate in liveness mechanisms for
+        blockchains. Proof-of-stake, although effective, is still not as simple and robust as proof-of-work.
+        Using just two nodes and an internet connection, POW can run a full financial system that will outlast the
+        bureaucratic machinery of any one nation state fiat.</p>
+      <h2>Why not upgrade Bitcoin?</h2>
+      <p>We believe in building the most efficient chain. Bitcoin is weighed by 15 years of technical complexity
+        (SegWit, etc.), which transfers into additional ZK proving work, thus decreasing the speed of proofing and
+        increasing the size of proofs.</p>
+      <p>There is a real opportunity to both take what we have learnt about blockchains in 15 years, as well as economic
+        distributions, and regenerate the old money into the new.</p>
 
-    <br />
-
-    <h1>Design.</h1>
-    <p>
-      tinychain augments the core Nakamoto primitives with ZK-friendly ones:
+      <!-- <h1>The market</h1>
+    <p>Crypto is oversaturated. There are two major markets which have been <a href="https://polynya.mirror.xyz/Gbd0BKCDM9mG9wqZg9Hd1wLwwS3sbfUi31ZK786YQRU">proven</a> - (1) alternative stores of value (like BTC and ETH) and (2) stablecoins (USDT, USDC, DAI).</p>
+    <p>Tinychain is based on a thesis of the crypto ecosystem:</p>
     <ul>
-      <li><b>Hashcash</b>: SHA256 -> <a href="https://eprint.iacr.org/2019/458.pdf">Poseidon</a>.</li>
-      <li><b>Signatures</b>: ECDSA signatures -> ZK signatures which show knowledge of a hash's preimage.</li>
-      <li><b>Scripts/VM</b>: <a href="https://en.bitcoin.it/wiki/Script">Script</a> -> commitments to provable spending conditions which allow Turing-complete computation with fixed-size verification cost (1 groth16 proof).</li>
-      <li><b>Blockchain history</b>: blocks processed into state -> succinct state snapshots with ZK-SNARK proofs of
-        validity.</li>
+      <li><b>ZK proofs will become the dominant scaling and security mechanism.</b> Proving size, speed, verification time will all continue to 1,000x due to a variety of theoretical advances in proving schemes and hardware acceleration.</li>
+      <li><b>Thousands of specialised blockchain networks will exist that bundle state and execution.</b> Appchains, each with their own tradeoffs of specialisation, execution runtimes, parallelisation, account abstraction, signature schemes, liveness.</li>
+      <li><b>The future is async, not monolithic.</b> Users will bridge assets between these networks.</li>
+      <li><b>BTC, ETH, USD.</b> BTC will remain the dominant alternative store-of-value asset, Ethereum will be the dominant DA/execution settlement layer for rollups.</li>
     </ul>
-    </p>
-    <p>In doing so, we make it possible to efficiently prove the validity of blocks, and thus the history of nakamoto
-      state, <strong><i>in realtime</i></strong>.</p>
-    <p>
-    <ul>
-      <li>In addition to mining the POW solution, miners generate a proof of their block before disseminating it.</li>
-      <li>Each proof shows the validity of the POW solution, the signatures of all transactions, and the new accounts
-        state. Proofs verify the proof of the previous block using recursive verification.</li>
-      <li>Bitcoin scripts is replaced by commitments to script programs. In order to spend a UXTO, you produce a proof of evaluating that program and unlocking the coin. Developers can use this to build privacy pools for example, by </li>
-      <li>Using the <a href="https://blog.lambdaclass.com/groth16/">groth16</a> ZK-SNARK proving scheme, with the BN256
-        curve, and Poseidon hash function, we can create proofs of size 32B (3 field elements of 8 bytes each) and verify them in 1.2ms <a href="https://eprint.iacr.org/2019/458.pdf">[1]</a>.</li>
-      <li>By building atop proof aggregation <a href="https://eprint.iacr.org/2021/529.pdf">[2]</a> and recursive verification schemes, it is possible to rollup these proofs into a single proof.</li>
-    </ul>
-    </p>
-    <p>With this design, we can ensure that the entire history of the chain is compressed into a series of proofs, which
-      can be verified in realtime by any node in the network.</p>
-    <p>Consequently, it becomes possible to securely bridge $TNY to other blockchain networks such as Ethereum because of ZK proofs. We believe enshrining the ZK proofing as part of Tinychain, rather than relying on external dependencies such as <a href="https://docs.gevulot.com/gevulot-docs/network/overview">prover networks</a>, is the right decision for the long-term sovereignity of the chain.</p>
-
-    <br />
-    <h1>Distribution.</h1>
-    <p>Tinychain is designed to fulfill Satoshi's original vision for Bitcoin as global P2P <a href="https://polynya.mirror.xyz/Gbd0BKCDM9mG9wqZg9Hd1wLwwS3sbfUi31ZK786YQRU">alt-sovereign hard money</a>. As such, 99% of
-      the Tinychain supply will be distributed permissionlessly through mining.</p>
-    <p>The Tinychain token, $TNY, will be distributed fairly to every person with a computer in the entire world, as
-      Satoshi desired.</p>
-    <p>To prevent centralization of mining power (ASIC's and FPGA's) which skews the distribution of the $TNY reward,
-      Tinychain will reuse the <a href="https://xilinx.github.io/blockchainacceleration/kernel_design.html">Ethash POW
-        kernel</a> pioneered by Ethereum, adapted for ZK proofing.</p>
-    <p>The supply curve and monetary issuance will mirror that of Bitcoin.</p>
-
-    <br />
-
-    <h1>Our fundraise.</h1>
-    <p>We are hosting an uncapped IDO raise of $5M for 1% of the $TNY supply (and only that). Buyers will have their
-      tokens generated at launch with 4YR linear unlock (matching the release of the first 1% of block rewards). We are looking for investors who believe in the vision of a world where everyone has a
-      crypto bank account, and are willing to support us in building it.</p>
-
-    <br />
-
-    <h1>Who is behind this?</h1>
-    <p>My name is Liam (<a href="https://github.com/liamzebedee/">@liamzebedee</a>) and I've been in crypto for over 10
-      years. I've been interested in P2P systems since I was 14, publishing <a
-        href="https://www.mail-archive.com/p2p-hackers@lists.zooko.com/msg03411.html">whitepapers to the p2p-hackers
-        mailing list</a> and so on, and most recently inventing a product for decentralized frontends known as <a
-        href="https://www.theblock.co/post/175483/crypto-dev-creates-way-to-access-prohibited-apps-like-tornado-cash">Dappnet</a>.
-    </p>
-    <p>I believe with ZK proofs we have a real opportunity to build "Bitcoin 2.0", that is 1,000x faster to access,
-      while retaining the same robustness and security of POW. Moreso, I believe it is our responsibility to Satoshi to
-      fulfill his vision - global, P2P money that is distributed fairly.</p>
-    <p>And emphasis on <i><b>fairly</b></i>. Tinychain's economics will not be a series of private rounds and then dumping on retail. We will be selling 1% of
-      the total supply in a fair raise and that's it.</p>
-    <p>It's time we get back to our roots. Stay humble, mine tiny.</p>
+    <p>With this in mind, relaunches the Bitcoin experiment, with the same security properties of Nakamoto blockchains, but built for the modern crypto ecosystem.</p>
+    <ol>
+        <li><strong>Bridged everywhere</strong>. Using ZK proofs, we can let any user bridge their alternative store-of-value asset to any blockchain/appchain network securely. So unlike Bitcoin, there is no need for wrapped BTC, external bridges operated by multisig wallets. Your TNY will be accepted everywhere.</li>
+        <li><strong>Distributed widely</strong>. Relaunching the Bitcoin economic experiment with a modern audience, and an anti-centralizing POW kernel which prevents mining centralization (ASIC's).</li>
+        <li><strong>Nodes on every device</strong>. A chain that automatically compresses itself using ZK proofs allows every user to run a node. Tinychain's core software will be built as a single portable executable, zero-configuration, that can be run anywhere. The tinychain blockchain implementation will be less than 10,000 lines of code, implemented based on modern primitives.</li>
+    </ol> -->
 
 
-    </main>
 
-    <a href="https://www.youtube.com/watch?v=_srvHOu75vM"><i>Who's world is this? The world is yours</i></a>
+      <!-- <img style="background: white;" src="./Untitled(3).png"/> -->
+      <p>Tinychain will do one thing and do it really well - an alt-sovereign store-of-value asset ($TNY), that is
+        securely transferable to any blockchain network due to ZK proofs, widely distributed through anti-centralizing
+        POW block rewards, with an extremely lightweight node software (>10K LOC) that allows anyone to sync and access
+        to the Tinychain payment network near-instantly (10s, 1x 5MB proof download) with zero configuration and
+        dependencies.</p>
+      <!-- https://polynya.mirror.xyz/UL8_QVNtB-nQoPYyoGyTteJoFNf9jEubzdRqO_5Ez58 -->
 
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/_srvHOu75vM?si=xcX5mOhBCHLXoPxb"
+      <br />
+
+      <h1>Design.</h1>
+      <p>
+        tinychain augments the core Nakamoto primitives with ZK-friendly ones:
+      <ul>
+        <li><b>Hashcash</b>: SHA256 -> <a href="https://eprint.iacr.org/2019/458.pdf">Poseidon</a>.</li>
+        <li><b>Signatures</b>: ECDSA signatures -> ZK signatures which show knowledge of a hash's preimage.</li>
+        <li><b>Scripts/VM</b>: <a href="https://en.bitcoin.it/wiki/Script">Script</a> -> commitments to provable
+          spending conditions which allow Turing-complete computation with fixed-size verification cost (1 groth16
+          proof).</li>
+        <li><b>Blockchain history</b>: blocks processed into state -> succinct state snapshots with ZK-STARK/SNARK proofs of
+          validity.</li>
+      </ul>
+      </p>
+      <p>In doing so, we make it possible to efficiently prove the validity of blocks, and thus the history of nakamoto
+        state, <strong><i>in realtime</i></strong>.</p>
+      <p>
+      <ul>
+        <li>In addition to mining the POW solution, miners generate a proof of their block before disseminating it.</li>
+        <li>Each proof shows the validity of the POW solution, the signatures of all transactions, and the new accounts
+          state. Proofs verify the proof of the previous block using recursive verification.</li>
+        <li>Bitcoin scripts is replaced by commitments to script programs. In order to spend a UXTO, you produce a proof
+          of evaluating that program and unlocking the coin. Developers can use this to build privacy pools for example,
+          by </li>
+        <li>Using the <a href="https://blog.lambdaclass.com/groth16/">groth16</a> ZK-SNARK proving scheme, with the
+          BN256
+          curve, and Poseidon hash function, we can create proofs of size 32B (3 field elements of 8 bytes each) and
+          verify them in 1.2ms <a href="https://eprint.iacr.org/2019/458.pdf">[1]</a>.</li>
+        <li>By building atop proof aggregation <a href="https://eprint.iacr.org/2021/529.pdf">[2]</a> and recursive
+          verification schemes (using mixtures of proving schemes <a
+            href="https://twitter.com/recmo/status/1580627865594314752/photo/1">[3]</a>), it is possible to rollup these
+          proofs into a single proof.</li>
+      </ul>
+      </p>
+      <p>With this design, we can ensure that the entire history of the chain is compressed into a series of proofs,
+        which
+        can be verified in realtime by any node in the network.</p>
+      <p>Consequently, it becomes possible to securely bridge $TNY to other blockchain networks such as Ethereum because
+        of ZK proofs. We believe enshrining the ZK proofing as part of Tinychain, rather than relying on external
+        dependencies such as <a href="https://docs.gevulot.com/gevulot-docs/network/overview">prover networks</a>, is
+        the right decision for the long-term sovereignity of the chain.</p>
+
+      <br />
+      <h1>Distribution.</h1>
+      <p>Tinychain is designed to fulfill Satoshi's original vision for Bitcoin as global P2P <a
+          href="https://polynya.mirror.xyz/Gbd0BKCDM9mG9wqZg9Hd1wLwwS3sbfUi31ZK786YQRU">alt-sovereign hard money</a>. As
+        such, 99% of
+        the Tinychain supply will be distributed permissionlessly through mining.</p>
+      <p>The Tinychain token, $TNY, will be widely distributed to every person with a computer in the entire world, as
+        Satoshi desired.</p>
+      <p>To prevent centralization of mining power (ASIC's and FPGA's) which skews the distribution of $TNY,
+        Tinychain will reuse the <a href="https://xilinx.github.io/blockchainacceleration/kernel_design.html">Ethash POW
+          kernel</a> pioneered by Ethereum, adapted for ZK proofing.</p>
+      <p>The supply curve and monetary issuance will mirror that of Bitcoin.</p>
+
+      <br />
+
+      <h1>Our fundraise.</h1>
+      <p>We are hosting an uncapped IDO raise of $5M for 1% of the $TNY supply (and only that). Buyers will have their
+        tokens generated at launch with 4YR linear unlock (matching the release of the first 1% of block rewards). We
+        are looking for investors who believe in the vision of a world where everyone has a
+        crypto bank account, and are willing to support us in building it.</p>
+
+      <br />
+
+      <h1>Who is behind this?</h1>
+      <!-- <p>My name is Liam (<a href="https://github.com/liamzebedee/">@liamzebedee</a>) and I've been in crypto for over
+        10
+        years. I've been interested in P2P systems since I was 14, publishing <a
+          href="https://www.mail-archive.com/p2p-hackers@lists.zooko.com/msg03411.html">whitepapers to the p2p-hackers
+          mailing list</a> and so on, and most recently inventing a product for decentralized frontends known as <a
+          href="https://www.theblock.co/post/175483/crypto-dev-creates-way-to-access-prohibited-apps-like-tornado-cash">Dappnet</a>.
+      </p> -->
+
+      <ul>
+        <li>liamzebedee: founder, core developer</li>
+        <li>0x13rian: core developer</li>
+      </ul>
+
+      <br/>
+      <h1>A final note.</h1>
+      
+      <p>I believe with ZK proofs we have a real opportunity to build "Bitcoin 2.0", that is 1,000x faster to access,
+        while retaining the same robustness and security of POW. Moreso, I believe it is our responsibility to Satoshi
+        to
+        fulfill his vision - global, P2P money that is distributed fairly and widely.</p>
+      <p>And emphasis on <i><b>fairly</b></i>. Tinychain's economics will not be a series of private rounds and then
+        dumping on retail. We will be selling 1% of
+        the total supply in a fair raise and that's it.</p>
+      <p>It's time we get back to our roots. Stay humble, mine tiny.</p>
+
+  </main>
+
+  <a href="https://www.youtube.com/watch?v=_srvHOu75vM"><i>Who's world is this? The world is yours</i></a>
+
+  <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/_srvHOu75vM?si=xcX5mOhBCHLXoPxb"
       title="YouTube video player" frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
   </div>
 </body>
 
