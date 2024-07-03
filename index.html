@@ -103,7 +103,15 @@ window.document.addEventListener("DOMContentLoaded", function() {
 
   <main id="tinymain" style="display: none;">
 
-  <h1 class="title">tinychain</h1>
+    <div class="text-align: center;">
+      <center>
+      <!-- <img style="display: inline-block; object-fit: contain; height:80px" src="./logo.png"/> -->
+      <!-- <img style="display: inline-block; object-fit: contain; height:240px" src="./2for_revered_anon.png"/> -->
+      <img style="display: inline-block; object-fit: contain; height:240px; padding-bottom: 30px;" src="./for_exceptional_client.png"/>
+      </center>
+    </div>
+  <!-- <h1 class="title">tinychain</h1> -->
+
 
   <div id="intro">
     <p>
@@ -182,6 +190,7 @@ window.document.addEventListener("DOMContentLoaded", function() {
       <li>In addition to mining the POW solution, miners generate a proof of their block before disseminating it.</li>
       <li>Each proof shows the validity of the POW solution, the signatures of all transactions, and the new accounts
         state. Proofs verify the proof of the previous block using recursive verification.</li>
+      <li>Bitcoin scripts is replaced by commitments to script programs. In order to spend a UXTO, you produce a proof of evaluating that program and unlocking the coin. Developers can use this to build privacy pools for example, by </li>
       <li>Using the <a href="https://blog.lambdaclass.com/groth16/">groth16</a> ZK-SNARK proving scheme, with the BN256
         curve, and Poseidon hash function, we can create proofs of size 32B (3 field elements of 8 bytes each) and verify them in 1.2ms <a href="https://eprint.iacr.org/2019/458.pdf">[1]</a>.</li>
       <li>By building atop proof aggregation <a href="https://eprint.iacr.org/2021/529.pdf">[2]</a> and recursive verification schemes, it is possible to rollup these proofs into a single proof.</li>
